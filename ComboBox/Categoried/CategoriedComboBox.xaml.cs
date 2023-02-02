@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace Jaywapp.UI
+namespace Jaywapp.UI.ComboBox.Categoried
 {
     /// <summary>
     /// CategoriedComboBox.xaml에 대한 상호 작용 논리
