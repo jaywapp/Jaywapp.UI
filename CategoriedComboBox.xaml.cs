@@ -1,11 +1,11 @@
-﻿using Jaywapp.UI.CategoriedComboBox.Interface;
+﻿using Jaywapp.UI.Interface;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace Jaywapp.UI.CategoriedComboBox
+namespace Jaywapp.UI
 {
     /// <summary>
     /// CategoriedComboBox.xaml에 대한 상호 작용 논리
@@ -13,22 +13,17 @@ namespace Jaywapp.UI.CategoriedComboBox
     public partial class CategoriedComboBox : UserControl
     {
         #region Dependency Properties
-        private static FrameworkPropertyMetadata Metadata = new FrameworkPropertyMetadata(
-                null,
-                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
-                OnDependencyPropertyChanged);
-
         public static readonly DependencyProperty CategoriedItemsSourceProperty = DependencyProperty.Register(
             nameof(CategoriedItemsSource),
             typeof(IEnumerable<ICategoriedItem>),
             typeof(CategoriedComboBox),
-            Metadata);
+            CreateMetadata());
 
         public static readonly DependencyProperty SelectedTextProperty = DependencyProperty.Register(
             nameof(SelectedText), 
             typeof(string), 
             typeof(CategoriedComboBox),
-            Metadata);
+            CreateMetadata());
         #endregion
 
         #region Properties
@@ -54,6 +49,14 @@ namespace Jaywapp.UI.CategoriedComboBox
         #endregion
 
         #region Functions
+        private static PropertyMetadata CreateMetadata()
+        {
+            return new FrameworkPropertyMetadata(
+                null,
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                OnDependencyPropertyChanged); 
+        }
+
         private static void OnDependencyPropertyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
             var control = obj as CategoriedComboBox;

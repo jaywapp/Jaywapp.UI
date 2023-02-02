@@ -1,4 +1,4 @@
-﻿namespace Jaywapp.UI.CategoriedComboBox.Interface
+﻿namespace Jaywapp.UI.Interface
 {
     /// <summary>
     /// Model including category information by using for combo box "ItemsSource"
