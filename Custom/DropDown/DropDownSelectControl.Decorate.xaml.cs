@@ -41,6 +41,12 @@ namespace Jaywapp.UI.Custom.DropDown
             typeof(Brush),
             typeof(DropDownSelectControl),
             new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty ListBackgroundColorProperty = DependencyProperty.Register(
+            nameof(ListBackgroundColor),
+            typeof(Brush),
+            typeof(DropDownSelectControl),
+            new FrameworkPropertyMetadata(null));
         #endregion
 
         #region Properties
@@ -78,6 +84,12 @@ namespace Jaywapp.UI.Custom.DropDown
         {
             get => (Brush)GetValue(StatusTextColorProperty);
             set => SetValue(StatusTextColorProperty, value);
+        }
+
+        public Brush ListBackgroundColor
+        {
+            get => (Brush)GetValue(ListBackgroundColorProperty);
+            set => SetValue(ListBackgroundColorProperty, value);
         }
         #endregion
 

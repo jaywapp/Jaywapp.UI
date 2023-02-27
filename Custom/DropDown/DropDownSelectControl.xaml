@@ -9,6 +9,7 @@
     <UserControl.Resources>
         <Style TargetType="ListBox" x:Key="ItemsList">
             <Setter Property="Margin" Value="0, 10, 0, 10"/>
+            <Setter Property="Background" Value="{Binding Path=ListBackgroundColor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
         </Style>
 
         <Style TargetType="CheckBox" x:Key="ItemCheckBox">
@@ -45,9 +46,10 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
     </UserControl.Resources>
-
     <Grid ToolTip="{Binding ElementName=_userControl, Path=DisplayText}">
-        <ToggleButton x:Name="_toggle" Width="100" Height="40"  
+        <ToggleButton x:Name="_toggle" 
+                      Width="{Binding ActualWidth, ElementName=_userControl}"
+                      Height ="{Binding ActualHeight, ElementName=_userControl}"
                       HorizontalAlignment="Center" VerticalAlignment="Center"
                       Content="{Binding ElementName=_userControl, Path=DisplayText}"/>
         
@@ -85,8 +87,9 @@
                             Content="CLEAR" HorizontalAlignment="Right" 
                             Style="{StaticResource ItemControlButton}"
                             Click="Clear"/>
-
-                    <ListBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4"
+                    
+                    <ListBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4"              
+                             Height="300"
                              Style="{StaticResource ItemsList}"
                              ItemsSource="{Binding ElementName=_userControl, Path=ItemsSource}">
                         <ListBox.ItemTemplate>
