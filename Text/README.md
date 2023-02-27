@@ -24,7 +24,17 @@ This is textbox has placeholder. You can use this for provide input information.
 </Window>
 ```
 
-### PlaceHolderText
+### PlaceHolderText :heavy_check_mark:
 Text for empty state. You can set PlaceHolderText directly in xaml and set binding from behind code or ViewModel.
-### Text
-Text is similar to original textbox from wpf.
+### Text :heavy_check_mark:
+Text is similar to original `textbox` from wpf.
+### TextChanged :heavy_check_mark:
+Receive and deliver the original event from `textbox`. At this point, deliver the PlaceHolderText to the sender and the default to RoutedEventArgs.
+### Foreground
+Gets the default value from `UserControl`
+### VerticalAlignment
+Gets the default value from `UserControl`
+### HorizontalAlignment
+Gets the default value from `UserControl`
+### FontSize
+Gets the default value from `UserControl`
