@@ -91,9 +91,10 @@ selected condition list. You can bind with objects in behind code or view model.
 ### Color Configuration
 - ThemeColor : theme color of control.
 - ThemeOppositeColor : theme opposite color of control.
-- PopupBackgroundColor : popup`s background color
-- PopupBorderBrush : popup`s border color
-- StatusTextColor : state text color
+- PopupBackgroundColor : popup`s background color.
+- PopupBorderBrush : popup`s border color.
+- StatusTextColor : state text color.
+- ListBackgroundColor : color of list in popup view.
 
 ### Other Configuration
 - PopupBorderThickness : state text thickness
