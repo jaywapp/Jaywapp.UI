@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="Jaywapp.UI.Text.PlaceHolderTextBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="_userControl">
+    <Grid>
+        <!-- Real TextBox -->
+        <TextBox Grid.Row="0" Grid.Column="0"
+                 Text="{Binding ElementName=_userControl, Path=DisplayText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Foreground="{Binding ElementName=_userControl, Path=Foreground}"
+                 VerticalAlignment="{Binding ElementName=_userControl, Path=VerticalAlignment}"
+                 HorizontalAlignment="{Binding ElementName=_userControl, Path=HorizontalAlignment}"
+                 Background="Transparent"
+                 Panel.ZIndex="2"
+                 CaretBrush="DimGray"
+                 FontSize="{Binding ElementName=_userControl, Path=FontSize}"
+                 FocusManager.IsFocusScope="True"
+                 TextChanged="OnTextChanged"/>
+
+        <!-- If textbox is empty, this show place holder -->
+        <TextBox Grid.Row="0" Grid.Column="0"
+                 Text="{Binding ElementName=_userControl, Path=PlaceHolderText}"
+                 FontSize="{Binding ElementName=_userControl, Path=FontSize}"
+                 VerticalAlignment="{Binding ElementName=_userControl, Path=VerticalAlignment}"
+                 HorizontalAlignment="{Binding ElementName=_userControl, Path=HorizontalAlignment}"
+                 Background="Transparent"
+                 FocusManager.IsFocusScope="False">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsEmpty, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" Value="False">
+                            <Setter Property="Foreground" Value="Transparent"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=IsEmpty, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" Value="True">
+                            <Setter Property="Foreground" Value="DimGray"/>
+                            <Setter Property="FontStyle" Value="Italic"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+    </Grid>
+</UserControl>
