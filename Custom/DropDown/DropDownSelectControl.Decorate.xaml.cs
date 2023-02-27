@@ -1,50 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media;
 
-namespace Jaywapp.UI.Button.DropDown
+namespace Jaywapp.UI.Custom.DropDown
 {
-    public partial class DropDownButton
+    public partial class DropDownSelectControl
     {
         #region Dependency Properties
         public static readonly DependencyProperty ThemeColorProperty = DependencyProperty.Register(
             nameof(ThemeColor),
             typeof(Brush),
-            typeof(DropDownButton),
+            typeof(DropDownSelectControl),
             new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty ThemeOppositeColorProperty = DependencyProperty.Register(
             nameof(ThemeOppositeColor),
             typeof(Brush),
-            typeof(DropDownButton),
+            typeof(DropDownSelectControl),
             new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty PopupBackgroundColorProperty = DependencyProperty.Register(
             nameof(PopupBackgroundColor),
             typeof(Brush),
-            typeof(DropDownButton),
+            typeof(DropDownSelectControl),
             new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty PopupBorderBrushProperty = DependencyProperty.Register(
             nameof(PopupBorderBrush),
             typeof(Brush),
-            typeof(DropDownButton),
+            typeof(DropDownSelectControl),
             new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty PopupBorderThicknessProperty = DependencyProperty.Register(
            nameof(PopupBorderThickness),
            typeof(Thickness),
-           typeof(DropDownButton),
+           typeof(DropDownSelectControl),
            new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty StatusTextColorProperty = DependencyProperty.Register(
             nameof(StatusTextColor),
             typeof(Brush),
-            typeof(DropDownButton),
+            typeof(DropDownSelectControl),
             new FrameworkPropertyMetadata(null));
         #endregion
 

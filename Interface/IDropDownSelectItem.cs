@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Jaywapp.UI.Button.DropDown.Interface
+namespace Jaywapp.UI.Interface
 {
-    public interface IDropDownButtonItem
+    public interface IDropDownSelectItem
     {
         event EventHandler Selected;
 

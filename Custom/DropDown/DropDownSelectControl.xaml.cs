@@ -1,5 +1,5 @@
-﻿using Jaywapp.UI.Button.DropDown.Interface;
-using Jaywapp.UI.Button.DropDown.Model;
+﻿using Jaywapp.UI.Interface;
+using Jaywapp.UI.Model;
 using Jaywapp.UI.Text;
 using System;
 using System.Collections.Generic;
@@ -8,14 +8,13 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
-namespace Jaywapp.UI.Button.DropDown
+namespace Jaywapp.UI.Custom.DropDown
 {
     /// <summary>
     /// EnumDrowDownButton.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class DropDownButton : UserControl, INotifyPropertyChanged
+    public partial class DropDownSelectControl : UserControl, INotifyPropertyChanged
     {
         #region Property Changed
         public event PropertyChangedEventHandler PropertyChanged;
@@ -29,7 +28,7 @@ namespace Jaywapp.UI.Button.DropDown
         public static readonly DependencyProperty DataSourceProperty = DependencyProperty.Register(
           nameof(DataSource),
           typeof(IEnumerable<object>),
-          typeof(DropDownButton),
+          typeof(DropDownSelectControl),
           new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
@@ -38,7 +37,7 @@ namespace Jaywapp.UI.Button.DropDown
         public static readonly DependencyProperty SelectedSourceProperty = DependencyProperty.Register(
             nameof(SelectedSource),
             typeof(IEnumerable<object>),
-            typeof(DropDownButton),
+            typeof(DropDownSelectControl),
             new FrameworkPropertyMetadata(null));
 
         public IEnumerable<object> DataSource
@@ -58,8 +57,8 @@ namespace Jaywapp.UI.Button.DropDown
         private string _displayText;
         private string _status;
         private string _filteringPattern;
-        private BindingList<IDropDownButtonItem> _itemsSource = new BindingList<IDropDownButtonItem>();
-        private BindingList<IDropDownButtonItem> _selectedItems = new BindingList<IDropDownButtonItem>();
+        private BindingList<IDropDownSelectItem> _itemsSource = new BindingList<IDropDownSelectItem>();
+        private BindingList<IDropDownSelectItem> _selectedItems = new BindingList<IDropDownSelectItem>();
         #endregion
 
         #region Properties
@@ -83,7 +82,7 @@ namespace Jaywapp.UI.Button.DropDown
             }
         }
 
-        public BindingList<IDropDownButtonItem> ItemsSource
+        public BindingList<IDropDownSelectItem> ItemsSource
         {
             get
             {
@@ -107,7 +106,7 @@ namespace Jaywapp.UI.Button.DropDown
                 UpdateStatus();
             }
         }
-        public BindingList<IDropDownButtonItem> SelectedItems
+        public BindingList<IDropDownSelectItem> SelectedItems
         {
             get => _selectedItems;
             set
@@ -127,7 +126,7 @@ namespace Jaywapp.UI.Button.DropDown
         #endregion
 
         #region Constructor
-        public DropDownButton()
+        public DropDownSelectControl()
         {
             InitializeDecoration();
             InitializeComponent();
@@ -137,7 +136,7 @@ namespace Jaywapp.UI.Button.DropDown
         #region Functions
         private static void OnDependencyPropertyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
-            var control = obj as DropDownButton;
+            var control = obj as DropDownSelectControl;
 
             if (e.Property == DataSourceProperty)
                 control.OnDataSourcePropertyChanged(e);
@@ -149,8 +148,8 @@ namespace Jaywapp.UI.Button.DropDown
                 return;
 
             var items = dataSource
-                .Select(s => new DropDownButtonItem<object>(s))
-                .Cast<IDropDownButtonItem>()
+                .Select(s => new DropDownSelectItem<object>(s))
+                .Cast<IDropDownSelectItem>()
                 .ToList();
 
             items.ForEach(i => i.Selected += UpdateSelections);

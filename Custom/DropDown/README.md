@@ -1,6 +1,6 @@
-# DropDownButton
+# DropDownSelectControl
 For filtering list, You can use this control. this control filter the list using checking and searching.
-### When DropDownButton Clicked
+### When DropDownSelectControl Clicked
 ![image](https://user-images.githubusercontent.com/20869970/221497998-47ae07d2-8875-4d9f-bec3-ba368583cc2c.png)
 ### When some items are selected
 ![image](https://user-images.githubusercontent.com/20869970/221498121-6d373e5d-a992-4618-a8ea-379f018cdfcc.png)
@@ -15,11 +15,11 @@ For filtering list, You can use this control. this control filter the list using
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:dropdown="clr-namespace:Jaywapp.UI.Button.DropDown;assembly=Jaywapp.UI"
+        xmlns:dropdown="clr-namespace:Jaywapp.UI.Custom.DropDown;assembly=Jaywapp.UI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         x:Name="_userControl">
-        <dropdown:DropDownButton
+    <dropdown:DropDownSelectControl
             DataSource="{Binding ElementName=_userControl, Path=Items}"
             SelectedSource="{Binding ElementName=_userControl, Path=SelectedItems, Mode=TwoWay}"/>
 </Window>

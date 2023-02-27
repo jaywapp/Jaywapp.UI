@@ -1,11 +1,11 @@
-﻿using Jaywapp.UI.Button.DropDown.Interface;
+﻿using Jaywapp.UI.Interface;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Jaywapp.UI.Button.DropDown.Model
+namespace Jaywapp.UI.Model
 {
-    public class DropDownButtonItem<T> : IDropDownButtonItem, INotifyPropertyChanged
+    public class DropDownSelectItem<T> : IDropDownSelectItem, INotifyPropertyChanged
     {
         #region Property Changed
         public event PropertyChangedEventHandler PropertyChanged;
@@ -39,7 +39,7 @@ namespace Jaywapp.UI.Button.DropDown.Model
         #endregion
 
         #region Constructor
-        public DropDownButtonItem(T source)
+        public DropDownSelectItem(T source)
         {
             Source = source;
             Title = source.ToString();

@@ -45,12 +45,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Button\DropDown\DropDownButton.xaml.cs">
-      <DependentUpon>DropDownButton.xaml</DependentUpon>
+    <Compile Include="Custom\DropDown\DropDownSelectControl.xaml.cs">
+      <DependentUpon>DropDownSelectControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Button\DropDown\DropDownButton.Decorate.xaml.cs" />
-    <Compile Include="Button\DropDown\Model\DropDownButtonItem.cs" />
-    <Compile Include="Button\DropDown\Interface\IDropDownButtonItem.cs" />
+    <Compile Include="Custom\DropDown\DropDownSelectControl.Decorate.xaml.cs">
+      <DependentUpon>DropDownSelectControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DropDownSelectItem.cs" />
+    <Compile Include="Interface\IDropDownSelectItem.cs" />
     <Compile Include="ComboBox\Categoried\CategoriedComboBox.xaml.cs">
       <DependentUpon>CategoriedComboBox.xaml</DependentUpon>
     </Compile>
@@ -61,7 +63,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Button\DropDown\DropDownButton.xaml">
+    <Page Include="Custom\DropDown\DropDownSelectControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
