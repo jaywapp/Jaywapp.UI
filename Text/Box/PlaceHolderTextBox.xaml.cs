@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Jaywapp.UI.Text
+namespace Jaywapp.UI.Text.Box
 {
     /// <summary>
     /// PlaceHolderTextBox.xaml에 대한 상호 작용 논리

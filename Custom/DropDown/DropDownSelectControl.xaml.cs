@@ -1,6 +1,7 @@
 ﻿using Jaywapp.UI.Interface;
 using Jaywapp.UI.Model;
 using Jaywapp.UI.Text;
+using Jaywapp.UI.Text.Box;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
