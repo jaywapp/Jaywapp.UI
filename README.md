@@ -5,3 +5,6 @@ This is repository for UI controls. I can upload about custom UI controls, UI ac
   - [CategoriedComboBox](https://github.com/jaywapp/Jaywapp.UI/tree/develop/ComboBox/Categoried)
 - DropDown
   - [DropDownSelectControl](https://github.com/jaywapp/Jaywapp.UI/tree/develop/Custom/DropDown)
+- Text
+  - [PlaceHolderTextBox](https://github.com/jaywapp/Jaywapp.UI/tree/develop/Text/Box)
+  - [EditablePost](https://github.com/jaywapp/Jaywapp.UI/tree/develop/Text/Post)
