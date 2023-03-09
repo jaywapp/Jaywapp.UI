@@ -30,6 +30,6 @@ this is title text of posting.
 You can control title text font size.
 ### ContentText :heavy_check_mark:
 this is content text of posting.
-### ContentTextFontSize
+### ContentTextFontSize :heavy_check_mark:
 You can control content text font size.
 
