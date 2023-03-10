@@ -20,14 +20,26 @@ namespace Jaywapp.UI.Interface
         {
             if(target is Filter filter)
             {
-                return new FilterItem(selectors);
+                var item = new FilterItem(selectors);
+
+                item.Logical = filter.Logical;
+                item.Selector = filter.Selector;
+                item.Operator = filter.Operator;
+                item.Expect = filter.Expect;
+
+                return item;
             }
             else if(target is FilterGroup filterGroup)
             {
                 var item = new FilterGroupItem(selectors);
 
                 foreach (var child in filterGroup.Children)
-                    item.Children.Add(Convert(child, selectors));
+                {
+                    var childItem = Convert(child, selectors);
+                    childItem.Parent = item;
+
+                    item.Children.Add(childItem);
+                }
 
                 return item;
             }
