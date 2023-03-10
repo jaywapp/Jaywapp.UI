@@ -20,6 +20,7 @@ namespace Jaywapp.UI.Model
 
         #region Properties
         public Type Type { get; }
+        public IFilterItem Parent { get; set; }
 
         public eLogicalOperator Logical
         {
@@ -56,14 +57,39 @@ namespace Jaywapp.UI.Model
         #region Functions
         public void AddFilter()
         {
-            Children.Add(new FilterItem(_selectorCandidates));
+            var item = new FilterItem(_selectorCandidates);
+            item.Parent = this;
+
+            Children.Add(item);
+
             this.RaisePropertyChanged(nameof(Children));
         }
 
         public void AddFilterGroup()
         {
-            Children.Add(new FilterGroupItem(_selectorCandidates));
+            var item = new FilterGroupItem(_selectorCandidates);
+            item.Parent = this;
+
+            Children.Add(item); 
+
             this.RaisePropertyChanged(nameof(Children));
+        }
+
+        public void Remove(IFilterItem item)
+        {
+            if (!Children.Contains(item)) 
+                return;
+
+            Children.Remove(item);
+            this.RaisePropertyChanged(nameof(Children));
+        }
+
+        public void RemoveSelf()
+        {
+            if (Parent == null || !(Parent is FilterGroupItem item))
+                return;
+
+            item.Remove(this);
         }
         #endregion
     }

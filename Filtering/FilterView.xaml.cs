@@ -1,4 +1,5 @@
-﻿using Jaywapp.UI.Model;
+﻿using Jaywapp.UI.Interface;
+using Jaywapp.UI.Model;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -28,6 +29,14 @@ namespace Jaywapp.UI.Filtering
                 return;
 
             item.AddFilterGroup();
+        }
+
+        private void Delete(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is Button button) || !(button.DataContext is IFilterItem item))
+                return;
+
+            item.RemoveSelf();
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Jaywapp.UI.Model
 
         #region Properties
         public Type Type { get; }
+        public IFilterItem Parent { get; set; }
 
         public eLogicalOperator Logical
         {
@@ -104,6 +105,14 @@ namespace Jaywapp.UI.Model
             }
 
             return targets;
+        }
+
+        public void RemoveSelf()
+        {
+            if (Parent == null || !(Parent is FilterGroupItem item))
+                return;
+
+            item.Remove(this);
         }
         #endregion
     }
