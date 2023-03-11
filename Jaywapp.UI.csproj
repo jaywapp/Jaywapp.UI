@@ -45,6 +45,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter\FilteringOpDescConverter.cs" />
     <Compile Include="Custom\DropDown\DropDownSelectControl.xaml.cs">
       <DependentUpon>DropDownSelectControl.xaml</DependentUpon>
     </Compile>

@@ -89,7 +89,7 @@ namespace Jaywapp.UI.Model
             };
         }
 
-        public static List<eFilteringOperator> GetItemsSouce(Type type, eFilterableTargetProperty targetType)
+        public static List<eFilteringOperator> GetItemsSouce(Type type, eFilteringType targetType)
         {
             var targets = new List<eFilteringOperator>();
 
