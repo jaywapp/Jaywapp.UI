@@ -8,3 +8,5 @@ This is repository for UI controls. I can upload about custom UI controls, UI ac
 - Text
   - [PlaceHolderTextBox](https://github.com/jaywapp/Jaywapp.UI/tree/develop/Text/Box)
   - [EditablePost](https://github.com/jaywapp/Jaywapp.UI/tree/develop/Text/Post)
+- Filtering
+  - [FilterView](https://github.com/jaywapp/Jaywapp.UI/tree/develop/Filtering)
