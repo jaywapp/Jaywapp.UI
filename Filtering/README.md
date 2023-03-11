@@ -109,6 +109,7 @@ FilterItem = new FilterGroupItem(selectors);
 
 ### Step3. Convert to Filter and Use Filter
 After user set filtering options using `FilterView`, Filtering is working by filter converted from `FilterItem`.
+https://github.com/jaywapp/Jaywapp.Infastructure/blob/develop/Filter/Interface/IFilter.cs is functioning interface defined in https://github.com/jaywapp/Jaywapp.Infastructure.
 
 ```
 // convert to filter
@@ -118,7 +119,8 @@ var filter = FilterItem.ToFilter();
 var targets = objs.Where(o => filter.IsFiltered(o)).ToList();
 ```
 
-### Whole of ViewModel
+---
+#### Whole of ViewModel
 ```
 using Jaywapp.Infrastructure.Filter.Interface;
 using Jaywapp.UI.Interface;
