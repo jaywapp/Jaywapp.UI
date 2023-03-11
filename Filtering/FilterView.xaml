@@ -1,0 +1,158 @@
+﻿<UserControl x:Class="Jaywapp.UI.Filtering.FilterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Jaywapp.UI.Filtering"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:enum="clr-namespace:Jaywapp.Infrastructure;assembly=Jaywapp.Infrastructure" 
+             xmlns:model="clr-namespace:Jaywapp.UI.Model" 
+             xmlns:converter="clr-namespace:Jaywapp.UI.Converter"
+             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800"
+             BorderBrush="LightGray" BorderThickness="1"
+             x:Name="_userControl">
+    <UserControl.Resources>
+        <!-- LogicalOperator 전체 항목 제공 -->
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type system:Enum}" x:Key="LogicalOperator">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enum:eLogicalOperator"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+
+        <!-- FilteringOperator Description 변환 -->
+        <converter:FilteringOpDescConverter x:Key="FilteringOpDescConverter"/>
+
+        <!-- 전체 Control에 대한 공통 스타일 -->
+        <Style TargetType="Control" x:Key="ControlStyle">
+            <Setter Property="BorderBrush" Value="LightGray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!-- 항목 추가 버튼 스타일 -->
+        <Style TargetType="Button" x:Key="AddButtonStyle" BasedOn="{StaticResource ControlStyle}">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Margin" Value="5, 0, 5, 0"/>
+        </Style>
+
+        <!-- 항목 제거 버튼 스타일 -->
+        <Style TargetType="Button" x:Key="DeleteButtonStyle" BasedOn="{StaticResource ControlStyle}">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+        <!-- 내부 사용 콤보박스 스타일 -->
+        <Style TargetType="ComboBox" x:Key="ComboBoxStyle" BasedOn="{StaticResource ControlStyle}">
+            <Setter Property="Margin" Value="3, 0, 3, 0"/>
+        </Style>
+
+        <!-- FilteringOperator 항목 제공 콤보박스 스타일 -->
+        <Style TargetType="ComboBox" x:Key="OperatorComboBoxStyle" BasedOn="{StaticResource ComboBoxStyle}">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource FilteringOpDescConverter}}"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- 값 입력 텍스트 박스 스타일 -->
+        <Style TargetType="TextBox" x:Key="ValueInputTextBoxStyle" BasedOn="{StaticResource ControlStyle}">
+            <Setter Property="Margin" Value="3, 0, 3, 0"/>
+        </Style>
+
+        <!-- ListBox내 Template (FilterItem) -->
+        <DataTemplate x:Key="FilterItemTemplate" DataType="{x:Type model:FilterItem}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="1*" MinWidth="100"/>
+                    <ColumnDefinition Width="1*" MinWidth="100"/>
+                    <ColumnDefinition Width="2*" MinWidth="200"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="-" Click="Delete"
+                          Style="{StaticResource DeleteButtonStyle}"/>
+
+                <ComboBox Grid.Column="1" 
+                          Style="{StaticResource ComboBoxStyle}"
+                          ItemsSource="{Binding Source={StaticResource LogicalOperator}}"
+                          SelectedItem="{Binding Logical}"/>
+                <ComboBox Grid.Column="2" 
+                          Style="{StaticResource ComboBoxStyle}"
+                          ItemsSource="{Binding CandidateSelectors}"
+                          SelectedItem="{Binding Selector}"/>
+                <ComboBox Grid.Column="3" 
+                          Style="{StaticResource OperatorComboBoxStyle}"
+                          ItemsSource="{Binding CandidateOperators}" 
+                          SelectedItem="{Binding Operator, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Grid.Column="4" 
+                          Style="{StaticResource ValueInputTextBoxStyle}"
+                          Text="{Binding Expect, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+        </DataTemplate>
+
+        <!-- ListBox내 Template (FilterGroupItem) -->
+        <DataTemplate x:Key="FilterGroupTemplate" DataType="{x:Type model:FilterGroupItem}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="-" Click="Delete"
+                          Style="{StaticResource DeleteButtonStyle}"/>
+                <ComboBox Grid.Column="1" 
+                          Style="{StaticResource ComboBoxStyle}"
+                          ItemsSource="{Binding Source={StaticResource LogicalOperator}}" 
+                          SelectedItem="{Binding Logical}" />
+
+                <!-- FilterView 재귀 사용함 -->
+                <local:FilterView Grid.Column="2" DataContext="{Binding }"/>
+            </Grid>
+        </DataTemplate>
+
+    </UserControl.Resources>
+    <ScrollViewer>
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- 필터 항목 뷰 -->
+            <ListBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="Transparent"
+                 ItemsSource="{Binding Children, UpdateSourceTrigger=PropertyChanged}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl Content="{Binding}">
+                            <ContentControl.Style>
+                                <Style TargetType="ContentControl">
+                                    <Setter Property="ContentTemplate" Value="{StaticResource FilterItemTemplate}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Type}" Value="{x:Type model:FilterGroupItem}">
+                                            <Setter Property="ContentTemplate" Value="{StaticResource FilterGroupTemplate}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ContentControl.Style>
+                        </ContentControl>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <!-- 추가 버튼 -->
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="0, 5, 0, 5" Orientation="Horizontal">
+                <Button Style="{StaticResource AddButtonStyle}" Content="Add Filter" Click="AddFilter"/>
+                <Button Style="{StaticResource AddButtonStyle}" Content="Add Filter Group" Click="AddFilterGroup"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
