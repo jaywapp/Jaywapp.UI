@@ -45,6 +45,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Block\BlockView.xaml.cs">
+      <DependentUpon>BlockView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ComboBox\EnumComboBox.xaml.cs">
       <DependentUpon>EnumComboBox.xaml</DependentUpon>
     </Compile>
@@ -76,6 +79,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Block\BlockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ComboBox\EnumComboBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
