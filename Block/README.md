@@ -1,5 +1,5 @@
 # BlockView
-This control is for IBlock interface.
+This control is for [IBlock](https://github.com/jaywapp/Jaywapp.Infastructure/blob/develop/Block/Interface/IBlock.cs) interface.
 
 ![캡처](https://user-images.githubusercontent.com/20869970/225476114-caf88b57-b9b8-48a2-8f07-43949ac305ab.PNG)
 
@@ -38,3 +38,21 @@ public class MainWindowViewModel : ReactiveObject
     }
 }
 ```
+
+# BlockFeedView
+This is flexible grid control by using BlockView.
+
+![230316](https://user-images.githubusercontent.com/20869970/225483229-971d0ae6-2492-4a57-a673-f463ab6a0d00.gif)
+
+## Usage
+```
+<block:BlockFeedView Blocks="{Binding Blocks}"
+    BlockWidth="300"
+    BlockHeight="280"
+    BlockBorderBrush="Black"
+    BlockBorderThickness="1"
+    BlockMargin="10"
+    Margin="50"/>
+```
+
+
